@@ -1,14 +1,17 @@
-export class User {
+export class Comment {
   // Initializing number type attributes with zero and strings with empty string
-  constructor() {
-    this.id = 0;
-    this.name = '';
-    this.username = '';
-    this.email = '';
-  }
 
   id: number;
   name: string;
-  username: string;
   email: string;
+  body: string;
+  postId: number;
+
+  constructor() {
+    this.id = 0;
+    this.name = '';
+    this.email = '';
+    this.body = '';
+    this.postId = 0;
+  }
 }
