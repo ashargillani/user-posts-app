@@ -1,1 +1,213 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+  font-size: 0.9rem;
+}
+
+#loadingLayer {
+  width: 100%;
+  height: 100%;
+  padding-top: 150px;
+  padding-bottom: 150px;
+  margin: 0;
+  z-index: 8888;
+  top: 0;
+  left: 0;
+  color: #29353c;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.page-wrapper.toggled .sidebar {
+  left: -300px;
+}
+
+.sidebar .ps.ps--scrolling-y > .ps__rail-y, .sidebar > .ps.ps--scrolling-x > .ps__rail-x, .ps .ps__rail-x:hover, .ps .ps__rail-y:hover, .ps .ps__rail-x:focus, .ps .ps__rail-y:focus, .ps .ps__rail-x.ps--clicking, .ps .ps__rail-y.ps--clicking {
+  background-color: transparent !important;
+}
+
+.sidebar .ps.ps--active-y > .ps__rail-y:hover, .sidebar > .ps.ps--active-y > .ps__rail-y.ps--clicking {
+  width: 10px !important;
+}
+
+.ps__thumb-y {
+  background-color: #fff !important;
+  width: 6px !important;
+  border-radius: 0px !important;
+  opacity: 0.5;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0.5px;
+  width: 100%;
+  height: 35px;
+  background-color: #f5f5f5;
+  padding-bottom: 5px;
+  border: 0.5px dotted gray;
+}
+
+.footer span {
+  color: #262626;
+  font-size: 0.7rem;
+  letter-spacing: 1.4px;
+}
+
+.page-content .m-bottom-40 {
+  /* Margin bottom for footer height */
+  margin-bottom: 40px;
+}
+
+nav.bg-breadcrumb {
+  background-color: #e9ecef;
+  border-radius: 5px;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-bottom: 20px;
+  padding: 0.4rem 0.7rem;
+}
+
+nav.bg-breadcrumb a#toggle-sidebar {
+  background-color: #4f6874;
+}
+
+nav.bg-breadcrumb a#toggle-sidebar:active, nav.bg-breadcrumb a#toggle-sidebar:focus {
+  outline: 0;
+  border: none;
+  -moz-outline-style: none;
+  box-shadow: none;
+}
+
+nav.bg-breadcrumb #toggle-sidebar #sidebar_toggle_switch {
+  font-size: 0.8rem;
+}
+
+nav.bg-breadcrumb .profile-settings-dropdown {
+  background-color: #4f6874 !important;
+  border-color: #6c757d;
+  border-radius: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 0.6rem !important;
+  padding-right: 0.6rem !important;
+  margin-right: 0 !important;
+}
+
+nav.bg-breadcrumb .profile-settings-dropdown img {
+  border-color: #6c757d !important;
+}
+
+div.breadcrumb-custom-container > .breadcrumb {
+  margin-bottom: 0px;
+}
+
+nav.navbar-light.bg-breadcrumb .profile-settings-dropdown, nav.navbar-light.bg-breadcrumb .toggle-icon {
+  color: #fff;
+}
+
+nav.navbar-light.bg-breadcrumb .profile-settings-dropdown:hover, nav.navbar-light.bg-breadcrumb .toggle-icon:hover {
+  color: #eaeaea;
+  cursor: pointer;
+}
+
+i.edit-icon {
+  color: #5c7cfa;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+i.delete-icon {
+  color: #a60303;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.datatable-custom {
+  padding: 5px;
+}
+
+div.dropdown-menu.show {
+  left: -15px !important;
+}
+
+div.dropdown-menu.show .dropdown-item:hover {
+  cursor: pointer;
+}
+
+.active-nav-link {
+  color: #6bbf89 !important;
+}
+
+.sidebar-menu ul li.sidebar-dropdown.active a {
+  color: #6bbf89 !important;
+}
+
+.sidebar-menu ul li.sidebar-dropdown.active a:hover {
+  color: #469964 !important;
+  i-color: #469964 !important;
+}
+
+.sidebar-menu ul li.sidebar-dropdown.active a i {
+  color: #6bbf89 !important;
+}
+
+.sidebar-menu ul li.sidebar-dropdown.active div.sidebar-submenu li a {
+  color: #bdbdbd !important;
+}
+
+.sidebar-menu ul li.sidebar-dropdown.active div.sidebar-submenu li a:before {
+  color: #bdbdbd !important;
+}
+
+.sidebar-menu ul li.sidebar-dropdown.active div.sidebar-submenu li a:hover {
+  color: #6bbf89 !important;
+}
+
+.sidebar-menu ul li.sidebar-dropdown.active div.sidebar-submenu li a:hover:before {
+  color: #6bbf89 !important;
+}
+
+.sidebar-menu ul li.sidebar-dropdown.active div.sidebar-submenu li a.active-nav-link {
+  color: #6bbf89 !important;
+}
+
+.sidebar-menu ul li.sidebar-dropdown.active div.sidebar-submenu li a.active-nav-link:before {
+  color: #6bbf89 !important;
+}
+
+.sidebar-menu ul li.sidebar-dropdown.active div.sidebar-submenu li a.active-nav-link:hover {
+  color: #469964 !important;
+}
+
+.sidebar-menu ul li.sidebar-dropdown.active div.sidebar-submenu li a.active-nav-link:hover:before {
+  color: #469964 !important;
+}
+
+.sidebar-menu ul li.sidebar-dropdown a:hover {
+  color: #6bbf89 !important;
+}
+
+.sidebar-menu ul li.sidebar-dropdown a:hover i {
+  color: #6bbf89 !important;
+}
+
+.m10-top-bottom {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+div.collapsed-filters {
+  padding: 18px 12px;
+  border: 0.5px dotted grey;
+  border-radius: 4px;
+  margin: 12px 0px;
+}
+
+div.collapsed-filters .filter-buttons {
+  display: flex;
+  align-items: center;
+}
+
+div.collapsed-filters .filter-buttons button.btn {
+  display: block;
+}
