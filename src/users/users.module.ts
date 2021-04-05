@@ -6,9 +6,10 @@ import { PersonalInfoModalComponent } from './user-wizard-modal/personal-info-mo
 import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule} from '@angular/forms';
 import { AddressInfoModalComponent } from './user-wizard-modal/address-info-modal/address-info-modal.component';
+import { ShowSummaryModalComponent } from './user-wizard-modal/show-summary-modal/show-summary-modal.component';
 
 @NgModule({
-  declarations: [ListUserComponent, PersonalInfoModalComponent, AddressInfoModalComponent],
+  declarations: [ListUserComponent, PersonalInfoModalComponent, AddressInfoModalComponent, ShowSummaryModalComponent],
   imports: [
     CommonModule,
     ApplicationPipesModule,

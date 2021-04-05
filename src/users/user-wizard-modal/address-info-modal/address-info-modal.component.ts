@@ -3,6 +3,7 @@ import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {UserService} from '../../services/user.service';
 import {Address} from '../../models/user.model';
 import {PersonalInfoModalComponent} from '../personal-info-modal/personal-info-modal.component';
+import {ShowSummaryModalComponent} from '../show-summary-modal/show-summary-modal.component';
 
 @Component({
   selector: 'app-address-info-modal',
@@ -29,7 +30,7 @@ export class AddressInfoModalComponent implements OnInit {
     if (this.save(form)) {
       activeModal.dismiss('Address Info Filled Successfully');
       // Navigate to the summary page
-      console.log('Form Validated, Next Section Please');
+      this.modalService.open(ShowSummaryModalComponent);
     }
   }
 

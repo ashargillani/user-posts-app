@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Address, Personal, User} from '../models/user.model';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs';
 import {UserWizardService} from './user-wizard.service';
 
 @Injectable({
@@ -14,7 +14,8 @@ export class UserService {
   personalFormValid = false;
   addressFormValid = false;
 
-  constructor(private http: HttpClient, private userWizardServiceService: UserWizardService) { }
+  constructor(private http: HttpClient, private userWizardService: UserWizardService) {
+  }
 
   getUserById(user: User): Observable<User> {
     return this.http.get<User>(this.userDetailsApiUrl + user.id);
@@ -46,7 +47,7 @@ export class UserService {
     this.user.username = data.username;
     this.user.email = data.email;
     // Validate Personal Step in Workflow
-    this.userWizardServiceService.validateStep('personal');
+    this.userWizardService.validateStep('personal');
   }
 
   getAddressDetails(): Address {
@@ -67,6 +68,27 @@ export class UserService {
     this.user.address.street = data.street;
     this.user.address.city = data.city;
     // Validate Personal Step in Workflow
-    this.userWizardServiceService.validateStep('address');
+    this.userWizardService.validateStep('address');
+  }
+
+  // Get updated or edited user
+  getUser(): User {
+    return this.user;
+  }
+
+  // Return true if both the forms were valid
+  isFormValid(): boolean {
+    return this.personalFormValid && this.addressFormValid;
+  }
+
+  /**
+   * Reset all user form related data
+   */
+  resetUserData(): User {
+    this.userWizardService.resetSteps();
+    this.user.clear();
+    this.addressFormValid = this.personalFormValid = false;
+
+    return this.user;
   }
 }

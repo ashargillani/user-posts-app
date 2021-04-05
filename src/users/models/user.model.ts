@@ -22,6 +22,18 @@ export class User {
       city: ''
     };
   }
+
+  clear(): void {
+    this.id = 0;
+    this.name = '';
+    this.username = '';
+    this.email = '';
+    this.address = {
+      suite: '',
+      street: '',
+      city: ''
+    };
+  }
 }
 
 // Class for wizard-forms
