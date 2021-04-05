@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-sm-12 px-3">
+    <div class="card bg-white rounded-2 px-2 py-3">
+      <div class="row">
+        <div class="col-sm-12">
+          <p class="font-weight-bold">List of Users</p>
+          <hr />
+          <table class="table table-light table-sm table-bordered table-striped">
+            <thead>
+            <tr>
+              <th *ngFor="let head of users[0] | objectKeys">{{ head | titlecase }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let user of users">
+              <td *ngFor="let list of user | objectKeys">{{user[list]}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
