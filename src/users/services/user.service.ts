@@ -3,6 +3,7 @@ import {Address, Personal, User} from '../models/user.model';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {UserWizardService} from './user-wizard.service';
+import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Injectable({
   providedIn: 'root'
@@ -84,7 +85,11 @@ export class UserService {
   /**
    * Reset all user form related data
    */
-  resetUserData(): User {
+  resetUserData(activeModal?: NgbActiveModal): User {
+    // If active modal open then dismiss it
+    if (typeof activeModal !== 'undefined') {
+      activeModal.dismiss('Modal close action');
+    }
     this.userWizardService.resetSteps();
     this.user.clear();
     this.addressFormValid = this.personalFormValid = false;

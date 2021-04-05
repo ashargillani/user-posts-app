@@ -18,7 +18,6 @@ export class ListUserComponent implements OnInit {
   }
 
   userWizardModal(type: string): void {
-    console.log(type);
     this.modalService.open(PersonalInfoModalComponent);
   }
 

@@ -1,6 +1,6 @@
 <div class="modal-header">
   <h4 class="modal-title" id="modal-personal-info">Personal Information</h4>
-  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+  <button type="button" class="close" aria-label="Close" (click)="closeModal(activeModal)">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
@@ -38,7 +38,7 @@
   </form>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Save click')">
+  <button type="button" class="btn btn-outline-dark" (click)="userService.resetUserData(activeModal)">
     <i class="fa fa-window-close"></i>
      Cancel
   </button>

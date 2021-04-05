@@ -2,7 +2,6 @@ import {Component, Input, OnInit} from '@angular/core';
 import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {UserService} from '../../services/user.service';
 import {AddressInfoModalComponent} from '../address-info-modal/address-info-modal.component';
-import {PersonalInfoModalComponent} from '../personal-info-modal/personal-info-modal.component';
 import {User} from '../../models/user.model';
 
 @Component({
@@ -11,10 +10,15 @@ import {User} from '../../models/user.model';
   styleUrls: ['./show-summary-modal.component.css']
 })
 export class ShowSummaryModalComponent implements OnInit {
-  @Input() userData: User | undefined;
+  @Input() userData: User | any;
   formValid = false;
 
   constructor(public activeModal: NgbActiveModal, private userService: UserService, private modalService: NgbModal) {
+  }
+
+  closeModal(activeModal: NgbActiveModal): void {
+    activeModal.dismiss('Modal Close Action');
+    this.userService.resetUserData();
   }
 
   goToPrevious(activeModal: NgbActiveModal): void {

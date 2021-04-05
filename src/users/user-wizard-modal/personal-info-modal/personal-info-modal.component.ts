@@ -17,6 +17,10 @@ export class PersonalInfoModalComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal, private userService: UserService, private modalService: NgbModal) {
   }
 
+  closeModal(activeModal: NgbActiveModal): void {
+    activeModal.dismiss('Modal Close Action');
+    this.userService.resetUserData();
+  }
 
   save(form: any): boolean {
     if (!form.valid) {
