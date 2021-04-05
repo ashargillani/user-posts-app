@@ -5,9 +5,10 @@ import { ApplicationPipesModule } from '../application-pipes/application-pipes.m
 import { PersonalInfoModalComponent } from './user-wizard-modal/personal-info-modal/personal-info-modal.component';
 import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule} from '@angular/forms';
+import { AddressInfoModalComponent } from './user-wizard-modal/address-info-modal/address-info-modal.component';
 
 @NgModule({
-  declarations: [ListUserComponent, PersonalInfoModalComponent],
+  declarations: [ListUserComponent, PersonalInfoModalComponent, AddressInfoModalComponent],
   imports: [
     CommonModule,
     ApplicationPipesModule,

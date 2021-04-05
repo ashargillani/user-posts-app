@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {UserService} from '../../services/user.service';
 import {Personal} from '../../models/user.model';
+import {AddressInfoModalComponent} from '../address-info-modal/address-info-modal.component';
 
 @Component({
   selector: 'app-personal-info-modal',
@@ -13,7 +14,7 @@ export class PersonalInfoModalComponent implements OnInit {
   // @ts-ignore
   personal: Personal;
 
-  constructor(public activeModal: NgbActiveModal, private userService: UserService) {
+  constructor(public activeModal: NgbActiveModal, private userService: UserService, private modalService: NgbModal) {
   }
 
 
@@ -26,10 +27,11 @@ export class PersonalInfoModalComponent implements OnInit {
     return true;
   }
 
-  goToNext(form: any): void {
+  goToNext(form: any, activeModal: NgbActiveModal): void {
     if (this.save(form)) {
       // Navigate to the work page
-      alert('Open Next Modal');
+      activeModal.dismiss('First Page Validated');
+      this.modalService.open(AddressInfoModalComponent);
     }
   }
 

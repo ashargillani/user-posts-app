@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Personal, User} from '../models/user.model';
+import {Address, Personal, User} from '../models/user.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {UserWizardService} from './user-wizard.service';
@@ -47,5 +47,26 @@ export class UserService {
     this.user.email = data.email;
     // Validate Personal Step in Workflow
     this.userWizardServiceService.validateStep('personal');
+  }
+
+  getAddressDetails(): Address {
+    // Return User Personal Related Fields
+    const address: Address = {
+      suite: this.user.address.suite,
+      street: this.user.address.suite,
+      city: this.user.address.city,
+    };
+
+    return address;
+  }
+
+  setAddressDetails(data: Address): void {
+    // Update the Personal data only when the Personal Form had been validated successfully
+    this.addressFormValid = true;
+    this.user.address.suite = data.suite;
+    this.user.address.street = data.street;
+    this.user.address.city = data.city;
+    // Validate Personal Step in Workflow
+    this.userWizardServiceService.validateStep('address');
   }
 }
