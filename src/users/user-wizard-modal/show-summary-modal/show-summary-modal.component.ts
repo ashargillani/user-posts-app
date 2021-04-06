@@ -3,6 +3,7 @@ import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {UserService} from '../../services/user.service';
 import {AddressInfoModalComponent} from '../address-info-modal/address-info-modal.component';
 import {User} from '../../models/user.model';
+import {PersonalInfoModalComponent} from '../personal-info-modal/personal-info-modal.component';
 
 @Component({
   selector: 'app-show-summary-modal',
@@ -24,7 +25,9 @@ export class ShowSummaryModalComponent implements OnInit {
   goToPrevious(activeModal: NgbActiveModal): void {
     activeModal.dismiss('Moving to the previous modal');
     // Navigate to the work page
-    this.modalService.open(AddressInfoModalComponent);
+    this.modalService.open(AddressInfoModalComponent, {
+      backdrop: 'static'
+    });
   }
 
   createOrUpdateUser(): boolean {

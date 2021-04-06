@@ -35,14 +35,18 @@ export class AddressInfoModalComponent implements OnInit {
     if (this.save(form)) {
       activeModal.dismiss('Address Info Filled Successfully');
       // Navigate to the summary page
-      this.modalService.open(ShowSummaryModalComponent);
+      this.modalService.open(ShowSummaryModalComponent, {
+        backdrop: 'static'
+      });
     }
   }
 
   goToPrevious(form: any, activeModal: NgbActiveModal): void {
     activeModal.dismiss('Moving to the previous modal');
     // Navigate to the work page
-    this.modalService.open(PersonalInfoModalComponent);
+    this.modalService.open(PersonalInfoModalComponent, {
+      backdrop: 'static'
+    });
   }
 
   ngOnInit(): void {

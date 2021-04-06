@@ -9,6 +9,7 @@ export class User {
     street: string,
     city: string,
   };
+  [key: string]: number | string | object
 
   // Initializing number type attributes with zero and strings with empty string
   constructor() {
@@ -22,6 +23,7 @@ export class User {
       city: ''
     };
   }
+
 
   clear(): void {
     this.id = 0;

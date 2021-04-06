@@ -6,7 +6,7 @@
           <p class="font-weight-bold">List of Users</p>
         </div>
         <div class="col-sm-auto">
-          <button class="btn btn-sm btn-outline-primary" (click)="userWizardModal('New')">
+          <button class="btn btn-sm btn-outline-primary" (click)="userWizardModal()">
             <i class="fa fa-plus"></i>
              Add
           </button>
@@ -21,7 +21,12 @@
         </thead>
         <tbody>
         <tr *ngFor="let user of users">
-          <td *ngFor="let list of user | objectKeys">{{user[list]}}</td>
+          <td *ngFor="let property of user | objectKeys">{{user[property]}}</td>
+          <td class="text-center">
+            <button class="btn btn-info rounded-circle btn-sm" (click)="userWizardModal(user)">
+              <i class="fa fa-pen fa-sm"></i>
+            </button>
+          </td>
         </tr>
         </tbody>
       </table>

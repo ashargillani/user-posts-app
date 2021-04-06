@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {UserWizardService} from './user-wizard.service';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,13 @@ export class UserService {
   }
 
   /**
+   * Set User as the selected provided
+   */
+  setUser(user: User): void {
+    this.user = user;
+  }
+
+  /**
    * Get Personal Details
    *
    */
@@ -41,6 +49,10 @@ export class UserService {
     return personal;
   }
 
+  /**
+   * Set Users Personal Details
+   * @param data - Param Of Personal Type
+   */
   setPersonalDetails(data: Personal): void {
     // Update the Personal data only when the Personal Form had been validated successfully
     this.personalFormValid = true;
@@ -62,6 +74,10 @@ export class UserService {
     return address;
   }
 
+  /**
+   * Set Users Address Details
+   * @param data - Param Of Address Type
+   */
   setAddressDetails(data: Address): void {
     // Update the Personal data only when the Personal Form had been validated successfully
     this.addressFormValid = true;
@@ -91,7 +107,7 @@ export class UserService {
       activeModal.dismiss('Modal close action');
     }
     this.userWizardService.resetSteps();
-    this.user.clear();
+    this.user = new User();
     this.addressFormValid = this.personalFormValid = false;
 
     return this.user;

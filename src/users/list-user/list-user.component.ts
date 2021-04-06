@@ -17,15 +17,20 @@ export class ListUserComponent implements OnInit {
     this.users = [];
   }
 
-  userWizardModal(type: string): void {
-    this.modalService.open(PersonalInfoModalComponent);
+  userWizardModal(user?: User): void {
+    if (typeof user !== 'undefined') {
+      this.userService.setUser(user);
+    }
+    this.modalService.open(PersonalInfoModalComponent, {
+      backdrop: 'static'
+    });
   }
 
   ngOnInit(): void {
     /**
      * Fetch all user objects
      */
-    this.userService.getAllUsers().subscribe(users => {
+    this.userService.getAllUsers().subscribe((users: User[]) => {
       this.users = users;
     });
   }

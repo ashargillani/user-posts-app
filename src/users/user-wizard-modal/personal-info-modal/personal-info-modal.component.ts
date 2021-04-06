@@ -35,7 +35,9 @@ export class PersonalInfoModalComponent implements OnInit {
     if (this.save(form)) {
       // Navigate to the work page
       activeModal.dismiss('First Page Validated');
-      this.modalService.open(AddressInfoModalComponent);
+      this.modalService.open(AddressInfoModalComponent, {
+        backdrop: 'static'
+      });
     }
   }
 
