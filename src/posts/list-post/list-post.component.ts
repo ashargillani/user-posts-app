@@ -14,7 +14,7 @@ export class ListPostComponent implements OnInit {
 
   posts: Post[];
 
-  constructor(private params: ActivatedRoute, private postService: PostService, private userService: UserService, private router: Router) {
+  constructor(private route: ActivatedRoute, private postService: PostService, private userService: UserService, private router: Router) {
     this.posts = [];
   }
 
@@ -27,7 +27,7 @@ export class ListPostComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const userId = this.params.snapshot.params.userId;
+    const userId = this.route.snapshot.params.userId;
     let userObject: User | undefined;
     // First check if user-list has already been set
     const userList = this.userService.getUserList();
@@ -46,7 +46,6 @@ export class ListPostComponent implements OnInit {
           });
         }
       } else {
-        console.error('Test Error');
         // Get user-object first
         this.userService.getUserById(userId).subscribe((user: User) => {
           userObject = user;
