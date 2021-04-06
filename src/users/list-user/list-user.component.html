@@ -17,14 +17,18 @@
         <thead>
         <tr>
           <th *ngFor="let head of users[0] | objectKeys">{{ head | titlecase }}</th>
+          <th>Actions</th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let user of users">
-          <td *ngFor="let property of user | objectKeys">{{user[property]}}</td>
+          <td *ngFor="let property of user | objectKeys">{{  simplifyPropertyValue(user[property])}}</td>
           <td class="text-center">
-            <button class="btn btn-info rounded-circle btn-sm" (click)="userWizardModal(user)">
-              <i class="fa fa-pen fa-sm"></i>
+            <button title="Update User" class="btn btn-info rounded-circle btn-sm" style="font-size: 0.75rem;" (click)="userWizardModal(user)">
+              <i class="fa fa-pen"></i>
+            </button>
+            <button title="Delete User" class="btn btn-danger rounded-circle btn-sm" style="font-size: 0.75rem;" (click)="removeUser(user)">
+              <i class="fa fa-trash"></i>
             </button>
           </td>
         </tr>

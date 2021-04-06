@@ -3,7 +3,6 @@ import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {UserService} from '../../services/user.service';
 import {AddressInfoModalComponent} from '../address-info-modal/address-info-modal.component';
 import {User} from '../../models/user.model';
-import {PersonalInfoModalComponent} from '../personal-info-modal/personal-info-modal.component';
 
 @Component({
   selector: 'app-show-summary-modal',
@@ -14,7 +13,11 @@ export class ShowSummaryModalComponent implements OnInit {
   @Input() userData: User | any;
   formValid = false;
 
-  constructor(public activeModal: NgbActiveModal, private userService: UserService, private modalService: NgbModal) {
+  constructor(
+    public activeModal: NgbActiveModal,
+    private userService: UserService,
+    private modalService: NgbModal
+  ) {
   }
 
   closeModal(activeModal: NgbActiveModal): void {
@@ -30,11 +33,31 @@ export class ShowSummaryModalComponent implements OnInit {
     });
   }
 
-  createOrUpdateUser(): boolean {
+  createUpdateUser(activeModal: NgbActiveModal, type: string = 'new'): void {
+    const requestType = (type === 'update') ? 'patch' : 'post';
+    const usersList = this.userService.getUserList();
     // First Reset the services
-    this.userService.resetUserData();
-
-    return true;
+    if (type === 'update') {
+      this.userService.updateUser(this.userData).subscribe(user => {
+        // Replace and Update user-object
+        usersList.forEach((element, index) => {
+          if (element.id === user.id) {
+            usersList[index] = user;
+          }
+          // Reset User Form
+          this.userService.resetUserData();
+          // Close Active Modal
+          activeModal.close();
+        });
+      });
+    } else {
+      this.userService.createNewUser(this.userData).subscribe(user => {
+        usersList.push(user);
+        // Reset User Form
+        this.userService.resetUserData();
+        activeModal.close();
+      });
+    }
   }
 
   ngOnInit(): void {

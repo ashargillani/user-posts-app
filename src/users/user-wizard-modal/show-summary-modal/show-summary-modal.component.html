@@ -56,7 +56,12 @@
   <button class="btn btn-outline-warning btn-outline-rounded"
           (click)="goToPrevious(activeModal)"> Previous <span style="margin-left:10px;"
                                                               class="fa fa-arrow-left"></span></button>
-  <button class="btn btn-success btn-outline-rounded btn-info" [disabled]="!formValid"
-          (click)="createOrUpdateUser()"> Save <span style="margin-left:10px;"
-                                                     class="fa fa-save"></span></button>
+  <button *ngIf="(userData.id == 0);else updateBtn" class="btn btn-success btn-outline-rounded btn-info" [disabled]="!formValid"
+          (click)="createUpdateUser(activeModal)"> Save <span style="margin-left:10px;"
+                                                              class="fa fa-save"></span></button>
+  <ng-template #updateBtn>
+    <button class="btn btn-success btn-outline-rounded btn-info" [disabled]="!formValid"
+            (click)="createUpdateUser(activeModal,'update')"> Update <span style="margin-left:10px;"
+                                                                           class="fa fa-save"></span></button>
+  </ng-template>
 </div>

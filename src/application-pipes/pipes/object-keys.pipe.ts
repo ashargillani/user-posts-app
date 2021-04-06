@@ -5,13 +5,18 @@ import {User} from '../../users/models/user.model';
   name: 'objectKeys'
 })
 export class ObjectKeysPipe implements PipeTransform {
+  userKeysToDisplay = [
+    'id', 'name', 'username', 'email', 'address'
+  ];
 
   transform(value: User, ...args: unknown[]): string[] {
     const keys = [];
 
     // tslint:disable-next-line:forin
     for (const key in value) {
-      keys.push(key);
+      if (this.userKeysToDisplay.indexOf(key.toLowerCase()) !== -1) {
+        keys.push(key);
+      }
     }
 
     return keys;

@@ -17,6 +17,23 @@ export class ListUserComponent implements OnInit {
     this.users = [];
   }
 
+  simplifyPropertyValue(propertyValue: any): string {
+    let value = '';
+    if (typeof propertyValue !== 'object' ) {
+      value = propertyValue;
+    } else {
+      // Iterate over all properties
+      for (const key in propertyValue) {
+        if (Object.prototype.hasOwnProperty.call(propertyValue, key) && typeof propertyValue[key] === 'string') {
+          // @ts-ignore
+          value = (value === '') ? propertyValue[key] : `${value}, ${propertyValue[key]}`;
+        }
+      }
+    }
+
+    return value;
+  }
+
   userWizardModal(user?: User): void {
     if (typeof user !== 'undefined') {
       this.userService.setUser(user);
@@ -26,12 +43,35 @@ export class ListUserComponent implements OnInit {
     });
   }
 
+  /**
+   * Sends delete request to server and removes user locally as-well
+   * @param user - User type Object
+   */
+  removeUser(user: User): void {
+    // First Reset the services
+    this.userService.deleteUser(user).subscribe(() => {
+      // Replace and Update user-object
+      let elementIndex = 0;
+      this.users.forEach((element, index) => {
+        if (element.id === user.id) {
+          elementIndex = index;
+        }
+      });
+      // Remove Element from users Array
+      this.users.splice(elementIndex, 1);
+      // Alert
+      alert('User successfully deleted');
+    });
+  }
+
   ngOnInit(): void {
     /**
      * Fetch all user objects
      */
     this.userService.getAllUsers().subscribe((users: User[]) => {
       this.users = users;
+      // Set the list so that it can be shared
+      this.userService.setUserList(this.users);
     });
   }
 }

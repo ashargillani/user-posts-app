@@ -12,9 +12,16 @@ import {map} from 'rxjs/operators';
 
 export class UserService {
   userDetailsApiUrl = 'https://jsonplaceholder.typicode.com/users/';
+  private usersList: User[] = [];
   private user = new User();
   personalFormValid = false;
   addressFormValid = false;
+
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
 
   constructor(private http: HttpClient, private userWizardService: UserWizardService) {
   }
@@ -25,6 +32,45 @@ export class UserService {
 
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.userDetailsApiUrl);
+  }
+
+  /**
+   * Set User List locally in service
+   * @param users - Users List
+   */
+  setUserList(users: User[]): void {
+    this.usersList = users;
+  }
+
+  /**
+   * Return User List
+   */
+  getUserList(): User[] {
+    return this.usersList;
+  }
+
+  /**
+   * Create New User and add it to the user-list
+   * @param user - User Type Object
+   */
+  createNewUser(user: User): Observable<User> {
+    return this.http.post<User>(this.userDetailsApiUrl, user, this.httpOptions);
+  }
+
+  /**
+   * Make Update User call to the server
+   * @param user - User Type Object
+   */
+  updateUser(user: User): Observable<User> {
+    return this.http.patch<User>(this.userDetailsApiUrl + user.id, user, this.httpOptions);
+  }
+
+  /**
+   * Create New User and add it to the user-list
+   * @param user - User Type Object
+   */
+  deleteUser(user: User): Observable<User> {
+    return this.http.delete<User>(this.userDetailsApiUrl + user.id);
   }
 
   /**

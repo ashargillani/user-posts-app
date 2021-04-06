@@ -23,14 +23,14 @@ export class SidebarService {
       },
     },
     {
-      title: 'My Todo',
-      icon: 'fas fa-tasks',
+      title: 'Users',
+      icon: 'fas fa-user',
       active: false,
       badge: {
         text: '!',
         class: 'badge-danger'
       },
-      url: '/todo'
+      url: '/users'
     },
     {
       title: 'Account',
