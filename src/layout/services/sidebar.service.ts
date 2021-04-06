@@ -34,7 +34,7 @@ export class SidebarService {
     },
     {
       title: 'Posts',
-      icon: 'fas fa-sticky-note-o',
+      icon: 'fa fa-sticky-note',
       active: false,
       url: '/posts'
     },
