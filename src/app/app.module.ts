@@ -8,6 +8,7 @@ import { LayoutModule } from '../layout/layout.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
+import {PostsModule} from '../posts/posts.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     HttpClientModule,
     UsersModule,
+    PostsModule,
     LayoutModule,
     FontAwesomeModule,
     NgbModalModule

@@ -1,12 +1,19 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {ListPostComponent} from './list-post/list-post.component';
+import {ApplicationPipesModule} from '../application-pipes/application-pipes.module';
+import { ViewPostComponent } from './view-post/view-post.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [ListPostComponent, ViewPostComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    ApplicationPipesModule
+  ],
+  exports: [
+    ListPostComponent
   ]
 })
-export class PostsModule { }
+export class PostsModule {
+}

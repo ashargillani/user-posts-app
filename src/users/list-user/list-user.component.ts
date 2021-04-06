@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { User } from '../models/user.model';
-import { UserService } from '../services/user.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { PersonalInfoModalComponent } from '../user-wizard-modal/personal-info-modal/personal-info-modal.component';
+import {Component, OnInit} from '@angular/core';
+import {User} from '../models/user.model';
+import {UserService} from '../services/user.service';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {PersonalInfoModalComponent} from '../user-wizard-modal/personal-info-modal/personal-info-modal.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-list-user',
@@ -13,13 +14,18 @@ export class ListUserComponent implements OnInit {
 
   users: User[];
 
-  constructor(private userService: UserService, private modalService: NgbModal) {
+  constructor(private userService: UserService, private modalService: NgbModal, private route: Router) {
     this.users = [];
   }
 
+  /**
+   * Returns primitive types as is, if object, joins all object properties
+   * @param propertyValue - can be object | number | string
+   * @return string - result string
+   */
   simplifyPropertyValue(propertyValue: any): string {
     let value = '';
-    if (typeof propertyValue !== 'object' ) {
+    if (typeof propertyValue !== 'object') {
       value = propertyValue;
     } else {
       // Iterate over all properties
@@ -34,7 +40,11 @@ export class ListUserComponent implements OnInit {
     return value;
   }
 
-  userWizardModal(user?: User): void {
+  /**
+   * Opens Personal Information Modal
+   * @param user - user object should be provided in case of update
+   */
+  personalInfoModal(user?: User): void {
     if (typeof user !== 'undefined') {
       this.userService.setUser(user);
     }
@@ -62,6 +72,14 @@ export class ListUserComponent implements OnInit {
       // Alert
       alert('User successfully deleted');
     });
+  }
+
+  /**
+   * Redirect to user posts
+   * @param userId - Users Id
+   */
+  redirectToUserPosts(userId: number): void {
+    this.route.navigate([`users/${userId}/posts`]);
   }
 
   ngOnInit(): void {

@@ -9,8 +9,10 @@ import {User} from '../../users/models/user.model';
 })
 
 export class PostService {
-  allPostsApiUrl = 'https://jsonplaceholder.typicode.com/posts';
-  postByUserIdApiUrl = 'https://jsonplaceholder.typicode.com/posts/';
+  allPostsApiUrl = 'https://jsonplaceholder.typicode.com/posts/';
+  postsByUserId = (user: User) => {
+    return `https://jsonplaceholder.typicode.com/users/${user.id}/posts`;
+  }
 
   constructor(private http: HttpClient) { }
 
@@ -28,6 +30,6 @@ export class PostService {
    * @returns - array of posts of user.id
    */
   getPostsByUserId(user: User): Observable<Post[]> {
-    return this.http.get<Post[]>(this.postByUserIdApiUrl + user.id);
+    return this.http.get<Post[]>(this.postsByUserId(user));
   }
 }

@@ -26,8 +26,8 @@ export class UserService {
   constructor(private http: HttpClient, private userWizardService: UserWizardService) {
   }
 
-  getUserById(user: User): Observable<User> {
-    return this.http.get<User>(this.userDetailsApiUrl + user.id);
+  getUserById(userId: number): Observable<User> {
+    return this.http.get<User>(this.userDetailsApiUrl + userId);
   }
 
   getAllUsers(): Observable<User[]> {
