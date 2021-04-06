@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-sm-12 px-3">
+    <div class="card bg-white rounded-2 px-2 py-3">
+      <div class="row justify-content-between">
+        <div class="col-sm-auto">
+          <p class="font-weight-bold">List of Users</p>
+        </div>
+        <div class="col-sm-auto">
+          <button class="btn btn-sm btn-outline-primary" (click)="userWizardModal()">
+            <i class="fa fa-plus"></i>
+             Add
+          </button>
+        </div>
+      </div>
+      <hr />
+      <table class="table table-light table-sm table-bordered table-striped">
+        <thead>
+        <tr>
+          <th *ngFor="let head of users[0] | objectKeys">{{ head | titlecase }}</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let user of users">
+          <td *ngFor="let property of user | objectKeys">{{  simplifyPropertyValue(user[property])}}</td>
+          <td class="text-center">
+            <button title="Update User" class="btn btn-info rounded-circle btn-sm" style="font-size: 0.75rem;" (click)="userWizardModal(user)">
+              <i class="fa fa-pen"></i>
+            </button>
+            <button title="Delete User" class="btn btn-danger rounded-circle btn-sm" style="font-size: 0.75rem;" (click)="removeUser(user)">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

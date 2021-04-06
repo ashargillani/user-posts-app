@@ -1,0 +1,48 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-personal-info">Personal Information</h4>
+  <button type="button" class="close" aria-label="Close" (click)="closeModal(activeModal)">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form #personalForm="ngForm" class="editForm" novalidate>
+
+      <div class='row'>
+        <div class='col-sm-12'>
+          <div class="row">
+            <div class='col-sm-12'>
+              <div class="form-group">
+                <label class="control-label" for="name">Name</label>
+                <input class="form-control input-md" #name="ngModel" required id="name" name="name" type="text"
+                       placeholder="Name" [(ngModel)]="personal.name">
+                <div class="alert alert-danger my-1" [hidden]="name.valid">Name is required</div>
+              </div>
+            </div>
+            <div class='col-sm-12'>
+              <div class="form-group">
+                <label class="control-label" for="username">username</label>
+                <input class="form-control input-md" #username="ngModel" required id="username" name="username"
+                       type="text" placeholder="Username" [(ngModel)]="personal.username">
+                <div class="alert alert-danger my-1" [hidden]="username.valid">Username is required</div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="email">Email</label>
+            <input class="form-control input-md" #email="ngModel" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$"
+                   id="email" name="email" type="text" placeholder="Email" [(ngModel)]="personal.email">
+            <div class="alert alert-danger my-1" [hidden]="email.valid">Email is required and must be valid</div>
+          </div>
+        </div>
+      </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="closeModal(activeModal)">
+    <i class="fa fa-window-close"></i>
+     Cancel
+  </button>
+  <button class="btn btn-success btn-outline-rounded btn-info" [disabled]="!personalForm.valid"
+          (click)="goToNext(personalForm, activeModal)"> Next <span style="margin-left:10px;"
+                                                       class="fa fa-arrow-right"></span></button>
+</div>

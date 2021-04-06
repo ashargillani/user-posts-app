@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { UsersModule } from '../users/users.module';
 import { LayoutModule } from '../layout/layout.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HttpClientModule } from '@angular/common/http';
+import { NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -14,9 +16,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     UsersModule,
     LayoutModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgbModalModule
   ],
   providers: [],
   bootstrap: [AppComponent]
