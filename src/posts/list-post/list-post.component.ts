@@ -26,6 +26,26 @@ export class ListPostComponent implements OnInit {
     this.router.navigate([`posts/${postId}`]);
   }
 
+  /**
+   * Delete Post
+   * @param post - Post Object
+   */
+  deletePost(post: Post): void {
+    this.postService.deletePost(post).subscribe(() => {
+      // Replace and Update user-object
+      let elementIndex = 0;
+      this.posts.forEach((element, index) => {
+        if (element.id === post.id) {
+          elementIndex = index;
+        }
+      });
+      // Remove Element from users Array
+      this.posts.splice(elementIndex, 1);
+
+      alert('Successfully Removed the Post');
+    });
+  }
+
   ngOnInit(): void {
     const userId = this.route.snapshot.params.userId;
     let userObject: User | undefined;

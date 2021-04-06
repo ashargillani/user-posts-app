@@ -46,6 +46,14 @@ export class PostService {
   }
 
   /**
+   * Delete post to the user-list
+   * @param post - Post Type Object
+   */
+  deletePost(post: Post): Observable<User> {
+    return this.http.delete<User>(this.allPostsApiUrl + post.id);
+  }
+
+  /**
    * Returns posts-list
    * @return - List of posts
    */

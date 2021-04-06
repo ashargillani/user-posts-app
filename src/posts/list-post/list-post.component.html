@@ -17,7 +17,7 @@
         <thead>
         <tr>
           <th *ngFor="let head of posts[0] | objectKeys">{{ head | titlecase }}</th>
-          <th>Actions</th>
+          <th style="width: 85px">Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -29,7 +29,7 @@
               <i class="fa fa-eye"></i>
             </button>&nbsp;
             <button title="Delete User" class="btn btn-outline-danger rounded-circle btn-sm" style="font-size: 0.75rem;"
-            >
+            (click)="deletePost(post)">
               <i class="fa fa-trash"></i>
             </button>&nbsp;
           </td>
