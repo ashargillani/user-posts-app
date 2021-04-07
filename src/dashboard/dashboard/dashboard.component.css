@@ -10,10 +10,6 @@
   margin: 30px 0px;
 }
 
-.text {
-  margin: 20px 0px;
-}
-
-.fa {
-  color: dodgerblue;
+.box-part:hover {
+  background-color: #e0e0e0;
 }

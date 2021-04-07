@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class SidebarService {
     },
     {
       title: 'Dashboard',
-      url : '/',
+      url: '/',
       icon: 'fa fa-tachometer-alt',
       active: false,
       badge: {
@@ -57,29 +57,38 @@ export class SidebarService {
     }
   ];
 
-  constructor() { }
-
-  toggle(): void {
-    this.toggled = ! this.toggled;
+  constructor() {
   }
 
+  /**
+   * Toggles Sidebar
+   */
+  toggle(): void {
+    this.toggled = !this.toggled;
+  }
+
+  /**
+   * Returns whether toggled true|false
+   */
   getSidebarState(): boolean {
     return this.toggled;
   }
 
+  /**
+   * Sets toggle to true|false
+   */
   setSidebarState(state: boolean): void {
     this.toggled = state;
   }
 
+  /**
+   * Returns Navigation Menu List
+   */
   getMenuList(): object[] {
     return this.menus;
   }
 
   get hasBackgroundImage(): boolean {
     return this._hasBackgroundImage;
-  }
-
-  set hasBackgroundImage(hasBackgroundImage) {
-    this._hasBackgroundImage = hasBackgroundImage;
   }
 }

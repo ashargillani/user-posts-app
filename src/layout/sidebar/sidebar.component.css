@@ -385,14 +385,6 @@
   border-right: none;
 }
 
-.sidebar.sidebar-bg {
-  /*background-image: url(/assets/img/bg1.jpg);
-   background-size: cover;
-   background-position: center;
-   background-repeat: no-repeat;
-   */
-}
-
 .sidebar.sidebar-bg:before {
   content: '';
   position: absolute;
