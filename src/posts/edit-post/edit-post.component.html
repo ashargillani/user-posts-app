@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-sm-12 px-4">
+    <div class="card bg-white rounded-2 px-2 py-3">
+      <div class="row justify-content-between">
+        <div class="col-sm-auto">
+          <h4 class="font-weight-bold">Edit Post</h4>
+        </div>
+      </div>
+      <hr/>
+      <form #editPostForm="ngForm" novalidate>
+        <div class="form-group">
+          <label for="title">Post Title</label>
+          <input type="text" class="form-control" id="title" name="title" #title [(ngModel)]="post.title" placeholder="Post Title">
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+          <label for="postUser">Example select</label>
+          <select class="form-control" id="postUser" name="postUser" #userId [(ngModel)]="post.userId">
+            <option *ngFor="let user of userList" [value]="user.id"
+                    [selected]="user.id == post.userId">{{ user.name }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="body">Post Body</label>
+          <textarea class="form-control" id="body" name="body" #body [(ngModel)]="post.body" rows="6"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="updatePost(editPostForm)"><i class="fa fa-save"></i> Update</button>
+      </form>
+    </div>
+  </div>
+</div>
+<app-post-comments [comments]="postComments" [post]="post" [usersList]="userList"></app-post-comments>

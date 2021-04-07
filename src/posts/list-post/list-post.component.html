@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-sm-12 px-3">
+    <div class="card bg-white rounded-2 px-2 py-3">
+      <div class="row justify-content-between">
+        <div class="col-sm-auto">
+          <h4 class="font-weight-bold">List of Posts</h4>
+        </div>
+        <div class="col-sm-auto">
+          <button class="btn btn-sm btn-outline-primary">
+            <i class="fa fa-plus"></i>
+            New
+          </button>
+        </div>
+      </div>
+      <hr/>
+      <table class="table table-light table-sm table-bordered table-striped">
+        <thead>
+        <tr>
+          <th *ngFor="let head of posts[0] | objectKeys">{{ head | titlecase }}</th>
+          <th style="width: 150px">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let post of posts">
+          <td *ngFor="let property of post | objectKeys">{{ post[property] }}</td>
+          <td class="text-center">
+            <button title="Edit Post" class="btn btn-outline-info rounded-circle btn-sm mx-1" style="font-size: 0.60rem;"
+                    (click)="redirectToEditPost(post.id)">
+              <i class="fa fa-pen"></i>
+            </button>
+            <button title="View Post" class="btn btn-outline-success rounded-circle btn-sm mx-1" style="font-size: 0.60rem;"
+            (click)="redirectToViewPost(post.id)">
+              <i class="fa fa-eye"></i>
+            </button>
+            <button title="Delete User" class="btn btn-outline-danger rounded-circle btn-sm mx-1" style="font-size: 0.60rem;"
+            (click)="deletePost(post)">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
