@@ -32,7 +32,6 @@ export class EditPostComponent implements OnInit {
     this.postService.updatePost(this.post).subscribe((post: Post) => {
       this.post = post;
       alert('Successfully Updated the post');
-
     });
   }
 

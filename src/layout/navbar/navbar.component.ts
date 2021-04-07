@@ -17,13 +17,4 @@ export class NavbarComponent implements OnInit {
   toggleSidebar(): void {
     this.sidebarService.setSidebarState(!this.sidebarService.getSidebarState());
   }
-
-  getSideBarState(): boolean {
-    return this.sidebarService.getSidebarState();
-  }
-
-  logout(): void {
-    alert('You are being logged out');
-    window.location.href = 'https://www.google.com';
-  }
 }

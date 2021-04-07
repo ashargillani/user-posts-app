@@ -14,8 +14,8 @@
           <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
         <div class="form-group">
-          <label for="postUser">Example select</label>
-          <select class="form-control" id="postUser" name="postUser" #userId [(ngModel)]="post.userId">
+          <label for="userId">Post User</label>
+          <select class="form-control" id="userId" name="userId" #userId [(ngModel)]="post.userId">
             <option *ngFor="let user of userList" [value]="user.id"
                     [selected]="user.id == post.userId">{{ user.name }}</option>
           </select>
@@ -24,7 +24,9 @@
           <label for="body">Post Body</label>
           <textarea class="form-control" id="body" name="body" #body [(ngModel)]="post.body" rows="6"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary" (click)="updatePost(editPostForm)"><i class="fa fa-save"></i> Update</button>
+        <div class="d-flex justify-content-end">
+          <button type="submit" class="btn btn-sm btn-primary" (click)="updatePost(editPostForm)"><i class="fa fa-save"></i> Update</button>
+        </div>
       </form>
     </div>
   </div>
