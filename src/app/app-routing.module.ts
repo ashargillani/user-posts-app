@@ -4,9 +4,11 @@ import {ListUserComponent} from '../users/list-user/list-user.component';
 import {ListPostComponent} from '../posts/list-post/list-post.component';
 import {ViewPostComponent} from '../posts/view-post/view-post.component';
 import {EditPostComponent} from '../posts/edit-post/edit-post.component';
+import {DashboardComponent} from '../dashboard/dashboard/dashboard.component';
 
 const routes: Routes = [
-  {path: '', component: ListUserComponent},
+  {path: '', component: DashboardComponent},
+  {path: 'dashboard', component: DashboardComponent},
   {path: 'users', component: ListUserComponent},
   {path: 'posts', component: ListPostComponent},
   {path: 'users/:userId/posts', component: ListPostComponent},

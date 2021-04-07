@@ -19,6 +19,9 @@ export class PostCommentsComponent implements OnInit {
   newComment: Comment;
   userEmailList: string[];
   userList: User[] = [];
+  confirmationMessage = 'Are you sure you want to delete this Post?';
+  commentAddedMessage = 'Successfully added the comment';
+  commentDeletedMessage = 'Successfully deleted the comment';
 
   constructor(private postService: PostService) {
     this.newComment = new Comment();
@@ -29,41 +32,53 @@ export class PostCommentsComponent implements OnInit {
    * Adds a new comment by calling services addComment method
    * @param newCommentForm - Form type object
    */
-  // @ts-ignore
-  addComment(newCommentForm: any): boolean {
+  addComment(newCommentForm: any): any {
     if (!newCommentForm.valid) {
       return false;
     }
 
-    this.postService.addComment(this.newComment).subscribe((comment: Comment) => {
-      this.comments.push(comment);
-      alert('Successfully posted the new comment');
-      this.newComment = new Comment();
-
-      return true;
-    });
+    // Check if comment is new or it needs to update
+    if (this.newComment.id !== 0) {
+      // Then update comment
+      this.postService.updateComment(this.newComment).subscribe((comment: Comment) => {
+        alert(this.commentAddedMessage);
+        this.newComment = new Comment();
+      });
+    } else {
+      // Call post service addComment method
+      this.postService.addComment(this.newComment).subscribe((comment: Comment) => {
+        this.comments.push(comment);
+        alert(this.commentAddedMessage);
+        this.newComment = new Comment();
+      });
+    }
   }
 
   /**
-   * Deletes the comment by calling deletComment method of service
+   * Deletes the comment by calling deleteComment method of service
    * @param comment - Comment Object
    */
   deleteComment(comment: Comment): void {
-    this.postService.deleteComment(comment).subscribe(() => {
-      // Replace and Update user-object
-      let elementIndex = 0;
-      this.comments.forEach((element, index) => {
-        if (element.id === comment.id) {
-          elementIndex = index;
-        }
+    if (confirm(this.confirmationMessage)) {
+      this.postService.deleteComment(comment).subscribe(() => {
+        // Replace and Update user-object
+        let elementIndex = 0;
+        this.comments.forEach((element, index) => {
+          if (element.id === comment.id) {
+            elementIndex = index;
+          }
+        });
+        // Remove element from users Array
+        this.comments.splice(elementIndex, 1);
+        // Alert
+        alert(this.commentDeletedMessage);
       });
-      // Remove Element from users Array
-      this.comments.splice(elementIndex, 1);
-      // Alert
-      alert('Successfully deleted the comment');
-    });
+    }
   }
 
+  /**
+   * Sets email list - used in create comment form
+   */
   setEmailList(): void {
     // Add all the emails to user-list
     this.userList.forEach((user: User) => {
@@ -73,6 +88,11 @@ export class PostCommentsComponent implements OnInit {
     });
   }
 
+  /**
+   * Sets comment form with selected comment
+   * @param comment - Comment Object
+   * @param el - Html element ref to scroll and focus
+   */
   setCommentForm(comment: Comment, el: HTMLElement): void {
     el.scrollIntoView();
     this.newComment = comment;

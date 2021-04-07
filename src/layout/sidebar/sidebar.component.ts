@@ -24,10 +24,6 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getSideBarState(): boolean {
-    return this.sidebarservice.getSidebarState();
-  }
-
   toggle(currentMenu: any): void {
     if (currentMenu.type === 'dropdown') {
       this.menus.forEach(element => {

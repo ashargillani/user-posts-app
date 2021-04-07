@@ -1,0 +1,15 @@
+.box {
+  padding: 60px 0px;
+}
+
+.box-part {
+  background: lightgrey;
+  border-radius: 5px;
+  border: 0.5px dotted darkgray;
+  padding: 60px 10px;
+  margin: 30px 0px;
+}
+
+.box-part:hover {
+  background-color: #e0e0e0;
+}

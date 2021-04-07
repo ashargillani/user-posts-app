@@ -26,16 +26,23 @@ export class UserService {
   constructor(private http: HttpClient, private userWizardService: UserWizardService) {
   }
 
+  /**
+   * Return Observable of user type object
+   * @param userId - User id should be provided
+   */
   getUserById(userId: number): Observable<User> {
     return this.http.get<User>(this.usersApiUrl + userId);
   }
 
+  /**
+   * Return Observable of user type array
+   */
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.usersApiUrl);
   }
 
   /**
-   * Set User List locally in service
+   * Set user-list locally in service
    * @param users - Users List
    */
   setUserList(users: User[]): void {
@@ -43,31 +50,31 @@ export class UserService {
   }
 
   /**
-   * Return User List
+   * Returns user-list
    */
   getUserList(): User[] {
     return this.usersList;
   }
 
   /**
-   * Create New User and add it to the user-list
-   * @param user - User Type Object
+   * Posts to new user api
+   * @param user - User type object
    */
   createNewUser(user: User): Observable<User> {
     return this.http.post<User>(this.usersApiUrl, user, this.httpOptions);
   }
 
   /**
-   * Make Update User call to the server
-   * @param user - User Type Object
+   * Patch call to update user
+   * @param user - User type object
    */
   updateUser(user: User): Observable<User> {
     return this.http.patch<User>(this.usersApiUrl + user.id, user, this.httpOptions);
   }
 
   /**
-   * Create New User and add it to the user-list
-   * @param user - User Type Object
+   * Delete call to the user api
+   * @param user - User type object
    */
   deleteUser(user: User): Observable<User> {
     return this.http.delete<User>(this.usersApiUrl + user.id);
@@ -81,8 +88,7 @@ export class UserService {
   }
 
   /**
-   * Get Personal Details
-   *
+   * Get personal type object for form usage
    */
   getPersonalDetails(): Personal {
     // Return User Personal Related Fields
@@ -96,8 +102,8 @@ export class UserService {
   }
 
   /**
-   * Set Users Personal Details
-   * @param data - Param Of Personal Type
+   * Sets personal details
+   * @param data - Param Of personal type
    */
   setPersonalDetails(data: Personal): void {
     // Update the Personal data only when the Personal Form had been validated successfully
@@ -109,6 +115,9 @@ export class UserService {
     this.userWizardService.validateStep('personal');
   }
 
+  /**
+   * Get address details object
+   */
   getAddressDetails(): Address {
     // Return User Personal Related Fields
     const address: Address = {
@@ -121,8 +130,8 @@ export class UserService {
   }
 
   /**
-   * Set Users Address Details
-   * @param data - Param Of Address Type
+   * Set Address Details
+   * @param data - Param of address type
    */
   setAddressDetails(data: Address): void {
     // Update the Personal data only when the Personal Form had been validated successfully

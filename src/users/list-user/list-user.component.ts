@@ -13,6 +13,8 @@ import {Router} from '@angular/router';
 export class ListUserComponent implements OnInit {
 
   users: User[];
+  confirmationMessage = 'Are you sure that you want to remove this user?';
+  deletionSuccessMessage = 'User has been successfully deleted';
 
   constructor(private userService: UserService, private modalService: NgbModal, private route: Router) {
     this.users = [];
@@ -58,20 +60,22 @@ export class ListUserComponent implements OnInit {
    * @param user - User type Object
    */
   removeUser(user: User): void {
-    // First Reset the services
-    this.userService.deleteUser(user).subscribe(() => {
-      // Replace and Update user-object
-      let elementIndex = 0;
-      this.users.forEach((element, index) => {
-        if (element.id === user.id) {
-          elementIndex = index;
-        }
+    if (confirm(this.confirmationMessage)) {
+      // First Reset the services
+      this.userService.deleteUser(user).subscribe(() => {
+        // Replace and Update user-object
+        let elementIndex = 0;
+        this.users.forEach((element, index) => {
+          if (element.id === user.id) {
+            elementIndex = index;
+          }
+        });
+        // Remove Element from users Array
+        this.users.splice(elementIndex, 1);
+        // Alert
+        alert(this.deletionSuccessMessage);
       });
-      // Remove Element from users Array
-      this.users.splice(elementIndex, 1);
-      // Alert
-      alert('User successfully deleted');
-    });
+    }
   }
 
   /**
