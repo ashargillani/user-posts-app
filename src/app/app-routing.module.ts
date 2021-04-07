@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {ListUserComponent} from '../users/list-user/list-user.component';
 import {ListPostComponent} from '../posts/list-post/list-post.component';
 import {ViewPostComponent} from '../posts/view-post/view-post.component';
+import {EditPostComponent} from '../posts/edit-post/edit-post.component';
 
 const routes: Routes = [
   {path: '', component: ListUserComponent},
@@ -10,6 +11,7 @@ const routes: Routes = [
   {path: 'posts', component: ListPostComponent},
   {path: 'users/:userId/posts', component: ListPostComponent},
   {path: 'posts/:postId', component: ViewPostComponent},
+  {path: 'posts/edit/:postId', component: EditPostComponent},
 ];
 
 @NgModule({

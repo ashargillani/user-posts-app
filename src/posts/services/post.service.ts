@@ -15,6 +15,7 @@ export class PostService {
   constructor(private http: HttpClient) { }
   postsApiUrl = `${environment.apiBaseUrl}posts/`;
   commentsApiUrl = `${environment.apiBaseUrl}comments/`;
+  commentsOfPostApiUrl = `${environment.apiBaseUrl}comments?postId=`;
   postsList: Post[] = [];
   private httpOptions = {
     headers: new HttpHeaders({
@@ -52,6 +53,15 @@ export class PostService {
   }
 
   /**
+   * Updates post object and calls the api
+   * @param post - Post type object
+   */
+  updatePost(post: Post): Observable<Post> {
+    return this.http.put<Post>(`${this.postsApiUrl}${post.id}`, post, this.httpOptions);
+  }
+
+
+  /**
    * Delete post to the user-list
    * @param post - Post Type Object
    */
@@ -79,7 +89,7 @@ export class PostService {
    * @return - List of posts
    */
   getPostComments(postId: number): Observable<Comment[]> {
-    return this.http.get<Comment[]>(`${this.postsApiUrl}${postId}/comments`);
+    return this.http.get<Comment[]>(`${this.commentsOfPostApiUrl}${postId}`);
   }
 
   /**
@@ -97,4 +107,5 @@ export class PostService {
   deleteComment(comment: Comment): Observable<any> {
     return this.http.delete(`${this.commentsApiUrl}${comment.id}`);
   }
+
 }

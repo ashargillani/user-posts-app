@@ -22,8 +22,16 @@ export class ListPostComponent implements OnInit {
    * Redirect to view post page
    * @param postId - Post Id
    */
-  redirectToPosts(postId: number): void {
+  redirectToViewPost(postId: number): void {
     this.router.navigate([`posts/${postId}`]);
+  }
+
+  /**
+   * Redirect to edit post page
+   * @param postId - Post Id
+   */
+  redirectToEditPost(postId: number): void {
+    this.router.navigate([`posts/edit/${postId}`]);
   }
 
   /**
