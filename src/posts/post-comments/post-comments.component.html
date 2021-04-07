@@ -28,13 +28,14 @@
                 </small>
               </span>
             </div>
-            <div class="action d-flex justify-content-between mt-2 align-items-center">
-              <div class="reply">
-                <small (click)="setCommentForm(comment, commentForm)">Edit</small>&nbsp;
-              </div>
-              <div class="icons align-items-center">
-                <button class="btn btn-sm btn-outline-danger" style="font-size: 0.60em;padding: 4px;" (click)="deleteComment(comment)">
-                  <i title="Delete Comment" class="fa fa-trash"></i>
+            <div class="action d-flex justify-content-end mt-1 align-items-center">
+              <div class="icons">
+                <button title="Edit Comment" class="btn btn-sm btn-outline-info rounded-circle" style="font-size: 0.60em;" (click)="setCommentForm(comment, commentForm)">
+                  <i class="fa fa-pen"></i>
+                </button>
+                &nbsp;
+                <button title="Delete Comment" class="btn btn-sm btn-outline-danger rounded-circle" style="font-size: 0.60em;" (click)="deleteComment(comment)">
+                  <i class="fa fa-trash"></i>
                 </button>
               </div>
             </div>

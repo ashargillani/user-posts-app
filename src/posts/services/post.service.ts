@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import {Post} from '../models/post.model';
 import {User} from '../../users/models/user.model';
 import {Comment} from '../models/comment.model';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,8 @@ import {Comment} from '../models/comment.model';
 export class PostService {
 
   constructor(private http: HttpClient) { }
-  allPostsApiUrl = 'https://jsonplaceholder.typicode.com/posts/';
-  allCommentsApiUrl = 'https://jsonplaceholder.typicode.com/comments';
+  postsApiUrl = `${environment.apiBaseUrl}posts/`;
+  commentsApiUrl = `${environment.apiBaseUrl}comments/`;
   postsList: Post[] = [];
   private httpOptions = {
     headers: new HttpHeaders({
@@ -29,7 +30,7 @@ export class PostService {
    * @returns - array of posts of user.id
    */
   getAllPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>(this.allPostsApiUrl);
+    return this.http.get<Post[]>(this.postsApiUrl);
   }
 
   /**
@@ -47,7 +48,7 @@ export class PostService {
    * @returns - post
    */
   getPostById(postId: number): Observable<Post> {
-    return this.http.get<Post>(this.allPostsApiUrl + postId);
+    return this.http.get<Post>(this.postsApiUrl + postId);
   }
 
   /**
@@ -55,7 +56,7 @@ export class PostService {
    * @param post - Post Type Object
    */
   deletePost(post: Post): Observable<User> {
-    return this.http.delete<User>(this.allPostsApiUrl + post.id);
+    return this.http.delete<User>(this.postsApiUrl + post.id);
   }
 
   /**
@@ -78,7 +79,7 @@ export class PostService {
    * @return - List of posts
    */
   getPostComments(postId: number): Observable<Comment[]> {
-    return this.http.get<Comment[]>(`${this.allPostsApiUrl}${postId}/comments`);
+    return this.http.get<Comment[]>(`${this.postsApiUrl}${postId}/comments`);
   }
 
   /**
@@ -86,7 +87,7 @@ export class PostService {
    * @param newComment - Comment Object
    */
   addComment(newComment: Comment): Observable<Comment> {
-    return this.http.post<Comment>(`${this.allCommentsApiUrl}`, newComment, this.httpOptions);
+    return this.http.post<Comment>(`${this.commentsApiUrl}`, newComment, this.httpOptions);
   }
 
   /**
@@ -94,6 +95,6 @@ export class PostService {
    * @param comment - Comment Object
    */
   deleteComment(comment: Comment): Observable<any> {
-    return this.http.delete(`${this.allCommentsApiUrl}/${comment.id}`);
+    return this.http.delete(`${this.commentsApiUrl}${comment.id}`);
   }
 }
