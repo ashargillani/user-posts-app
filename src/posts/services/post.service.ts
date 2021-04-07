@@ -85,6 +85,13 @@ export class PostService {
   }
 
   /**
+   * Calls API and Provides the array of all comments
+   */
+  getAllComments(): Observable<Comment[]> {
+    return this.http.get<Comment[]>(this.commentsApiUrl);
+  }
+
+  /**
    * Returns posts-list
    * @return - List of posts
    */
