@@ -28,7 +28,7 @@
             <span *ngIf="menu.type === 'header'">{{menu.title}}</span>
             <a *ngIf="menu.type !== 'header'" (click)='toggle(menu)' [routerLink]="menu.url">
               <i class="{{menu.icon}}"></i>
-              <span> {{menu.title}}</span>
+              <span> &nbsp;{{menu.title}}</span>
               <span *ngIf="menu.badge" class="badge badge-pill" [ngClass]="menu.badge.class">{{menu.badge.text}}</span>
             </a>
             <div *ngIf="menu.type === 'dropdown'" class="sidebar-submenu" [@slide]="getState(menu)">

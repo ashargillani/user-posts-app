@@ -14,7 +14,7 @@ export class SidebarService {
     },
     {
       title: 'Dashboard',
-      url : '/home',
+      url : '/',
       icon: 'fa fa-tachometer-alt',
       active: false,
       badge: {
@@ -27,7 +27,7 @@ export class SidebarService {
       icon: 'fas fa-user',
       active: false,
       badge: {
-        text: '!',
+        text: '3',
         class: 'badge-danger'
       },
       url: '/users'

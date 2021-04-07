@@ -9,6 +9,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
 import {PostsModule} from '../posts/posts.module';
+import {DashboardModule} from '../dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import {PostsModule} from '../posts/posts.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    DashboardModule,
     UsersModule,
     PostsModule,
     LayoutModule,
