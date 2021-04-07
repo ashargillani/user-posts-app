@@ -1,0 +1,97 @@
+<div class="row mt-2">
+  <div class="col-sm-12 px-4">
+    <div class="card bg-white rounded-2 px-2 py-3">
+      <div class="row">
+        <div class="col-sm-12">
+          <h4 class="p-1 mb-3 font-italic border-bottom bg-light">
+            Comments
+          </h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card comment-card p-3 my-2 bg-light" *ngFor="let comment of comments">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="user d-flex flex-row align-items-center">
+                <img src="https://i.imgur.com/hczKIze.jpg" width="30"
+                     class="user-img rounded-circle mr-2"/>
+                <span>
+                  <small class="font-weight-bold text-primary">{{ comment.email}}: </small>
+                  <small class="font-weight-bold">{{ comment.name }}</small>
+                </span>
+              </div>
+            </div>
+            <div class="d-flex">
+              <span>
+                <small>
+                  {{ comment.body }}
+                </small>
+              </span>
+            </div>
+            <div class="action d-flex justify-content-end mt-1 align-items-center">
+              <div class="icons">
+                <button title="Edit Comment" class="btn btn-sm btn-outline-info rounded-circle" style="font-size: 0.60em;" (click)="setCommentForm(comment, commentForm)">
+                  <i class="fa fa-pen"></i>
+                </button>
+                &nbsp;
+                <button title="Delete Comment" class="btn btn-sm btn-outline-danger rounded-circle" style="font-size: 0.60em;" (click)="deleteComment(comment)">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card comment-card p-3 my-2 bg-light">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="user d-flex flex-row align-items-center">
+                <span>
+                  <small class="font-weight-bold text-primary" *ngIf="(newComment.id == 0);else updateText">Add New Comment</small>
+                  <ng-template #updateText>
+                    <small class="font-weight-bold text-primary">Update Comment</small>
+                  </ng-template>
+                </span>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <form #newCommentForm="ngForm" novalidate style="width: 100%" #commentForm>
+                <div class="form-group mb-1">
+                  <div>
+                    <small>Comment Title</small>
+                    <input required class="form-control form-control-sm" type="text" id="name" name="name" #name="ngModel" [(ngModel)]="newComment.name"/>
+                    <small class="text-danger" [hidden]="name.valid">Comment Title is required!</small>
+                  </div>
+                  <div>
+                    <small>Comment Body</small>
+                    <textarea required class="form-control form-control-sm" type="body" id="body" name="body" #body="ngModel" [(ngModel)]="newComment.body"></textarea>
+                    <small class="text-danger" [hidden]="body.valid">Comment Body is required!</small>
+                  </div>
+                  <div>
+                    <small>Comment By</small>
+                    <select required class="form-control form-control-sm" type="email" id="email" name="email" #email="ngModel" [(ngModel)]="newComment.email">
+                      <option *ngFor="let email of userEmailList" [value]="email" [selected]="email == newComment.email">{{ email }}</option>
+                    </select>
+                    <small class="text-danger" [hidden]="name.valid">Comment User is required!</small>
+                  </div>
+                  <div>
+                    <input type="hidden" id="postId" name="postId" #postId="ngModel" [(ngModel)]="newComment.postId" value="{{ post.id }}">
+                  </div>
+                </div>
+
+              </form>
+            </div>
+            <div class="action d-flex align-items-end justify-content-end">
+              <div class="icons">
+                <button class="btn btn-outline-info rounded-circle btn-sm" title="Add Comment" [disabled]="!newCommentForm.valid" (click)="addComment(newCommentForm)">
+                  <i class="fa fa-plus"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -4,14 +4,14 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {UserWizardService} from './user-wizard.service';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {map} from 'rxjs/operators';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class UserService {
-  userDetailsApiUrl = 'https://jsonplaceholder.typicode.com/users/';
+  usersApiUrl = `${environment.apiBaseUrl}users/`;
   private usersList: User[] = [];
   private user = new User();
   personalFormValid = false;
@@ -26,12 +26,12 @@ export class UserService {
   constructor(private http: HttpClient, private userWizardService: UserWizardService) {
   }
 
-  getUserById(user: User): Observable<User> {
-    return this.http.get<User>(this.userDetailsApiUrl + user.id);
+  getUserById(userId: number): Observable<User> {
+    return this.http.get<User>(this.usersApiUrl + userId);
   }
 
   getAllUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.userDetailsApiUrl);
+    return this.http.get<User[]>(this.usersApiUrl);
   }
 
   /**
@@ -54,7 +54,7 @@ export class UserService {
    * @param user - User Type Object
    */
   createNewUser(user: User): Observable<User> {
-    return this.http.post<User>(this.userDetailsApiUrl, user, this.httpOptions);
+    return this.http.post<User>(this.usersApiUrl, user, this.httpOptions);
   }
 
   /**
@@ -62,7 +62,7 @@ export class UserService {
    * @param user - User Type Object
    */
   updateUser(user: User): Observable<User> {
-    return this.http.patch<User>(this.userDetailsApiUrl + user.id, user, this.httpOptions);
+    return this.http.patch<User>(this.usersApiUrl + user.id, user, this.httpOptions);
   }
 
   /**
@@ -70,7 +70,7 @@ export class UserService {
    * @param user - User Type Object
    */
   deleteUser(user: User): Observable<User> {
-    return this.http.delete<User>(this.userDetailsApiUrl + user.id);
+    return this.http.delete<User>(this.usersApiUrl + user.id);
   }
 
   /**

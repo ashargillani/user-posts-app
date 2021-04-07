@@ -33,6 +33,12 @@ export class SidebarService {
       url: '/users'
     },
     {
+      title: 'Posts',
+      icon: 'fa fa-sticky-note',
+      active: false,
+      url: '/posts'
+    },
+    {
       title: 'Account',
       type: 'header'
     },
