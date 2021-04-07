@@ -30,10 +30,12 @@
             </div>
             <div class="action d-flex justify-content-between mt-2 align-items-center">
               <div class="reply">
-                <small>Edit</small>&nbsp;
+                <small (click)="setCommentForm(comment, commentForm)">Edit</small>&nbsp;
               </div>
               <div class="icons align-items-center">
-                <i class="fa fa-trash text-danger"></i>
+                <button class="btn btn-sm btn-outline-danger" style="font-size: 0.60em;padding: 4px;" (click)="deleteComment(comment)">
+                  <i title="Delete Comment" class="fa fa-trash"></i>
+                </button>
               </div>
             </div>
           </div>
@@ -45,12 +47,15 @@
             <div class="d-flex justify-content-between align-items-center">
               <div class="user d-flex flex-row align-items-center">
                 <span>
-                  <small class="font-weight-bold text-primary">Add New Comment</small>
+                  <small class="font-weight-bold text-primary" *ngIf="(newComment.id == 0);else updateText">Add New Comment</small>
+                  <ng-template #updateText>
+                    <small class="font-weight-bold text-primary">Update Comment</small>
+                  </ng-template>
                 </span>
               </div>
             </div>
             <div class="d-flex align-items-center">
-              <form #newCommentForm="ngForm" novalidate style="width: 100%">
+              <form #newCommentForm="ngForm" novalidate style="width: 100%" #commentForm>
                 <div class="form-group mb-1">
                   <div>
                     <small>Comment Title</small>
@@ -65,7 +70,7 @@
                   <div>
                     <small>Comment By</small>
                     <select required class="form-control form-control-sm" type="email" id="email" name="email" #email="ngModel" [(ngModel)]="newComment.email">
-                      <option *ngFor="let user of userList" value="{{ user.email }}">{{ user.email }}</option>
+                      <option *ngFor="let email of userEmailList" [value]="email" [selected]="email == newComment.email">{{ email }}</option>
                     </select>
                     <small class="text-danger" [hidden]="name.valid">Comment User is required!</small>
                   </div>

@@ -10,18 +10,19 @@ import {Comment} from '../models/comment.model';
 })
 
 export class PostService {
+
+  constructor(private http: HttpClient) { }
   allPostsApiUrl = 'https://jsonplaceholder.typicode.com/posts/';
+  allCommentsApiUrl = 'https://jsonplaceholder.typicode.com/comments';
   postsList: Post[] = [];
-  postsByUserId = (user: User) => {
-    return `https://jsonplaceholder.typicode.com/users/${user.id}/posts`;
-  }
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
   };
-
-  constructor(private http: HttpClient) { }
+  postsByUserId = (user: User) => {
+    return `https://jsonplaceholder.typicode.com/users/${user.id}/posts`;
+  }
 
   /**
    * Provides the array of all posts
@@ -85,6 +86,14 @@ export class PostService {
    * @param newComment - Comment Object
    */
   addComment(newComment: Comment): Observable<Comment> {
-    return this.http.post<Comment>(`${this.allPostsApiUrl}${newComment.postId}/comments`, newComment, this.httpOptions);
+    return this.http.post<Comment>(`${this.allCommentsApiUrl}`, newComment, this.httpOptions);
+  }
+
+  /**
+   * Deletes the comment
+   * @param comment - Comment Object
+   */
+  deleteComment(comment: Comment): Observable<any> {
+    return this.http.delete(`${this.allCommentsApiUrl}/${comment.id}`);
   }
 }
