@@ -15,6 +15,7 @@ export class ViewPostComponent implements OnInit {
   post: Post = new Post();
   postUser = new User();
   postComments: Comment[] = [];
+  userList: User[] = [];
 
   constructor(private route: ActivatedRoute, private postService: PostService, private userService: UserService, private router: Router) { }
 
@@ -32,6 +33,14 @@ export class ViewPostComponent implements OnInit {
           this.postService.getPostComments(this.post.id).subscribe((comments: Comment[]) => {
             this.postComments = comments;
           });
+          // Get Users List
+          let userList: User[];
+          userList = this.userService.getUserList();
+          if (typeof userList === 'undefined' || userList.length === 0) {
+            this.userService.getAllUsers().subscribe((users: User[]) => {
+              this.userList = users;
+            });
+          }
         }
         // Load Post User Object Too
       });

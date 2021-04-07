@@ -12,10 +12,14 @@ import {Comment} from '../models/comment.model';
 export class PostService {
   allPostsApiUrl = 'https://jsonplaceholder.typicode.com/posts/';
   postsList: Post[] = [];
-
   postsByUserId = (user: User) => {
     return `https://jsonplaceholder.typicode.com/users/${user.id}/posts`;
   }
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
 
   constructor(private http: HttpClient) { }
 
@@ -74,5 +78,13 @@ export class PostService {
    */
   getPostComments(postId: number): Observable<Comment[]> {
     return this.http.get<Comment[]>(`${this.allPostsApiUrl}${postId}/comments`);
+  }
+
+  /**
+   * Adds a new comment
+   * @param newComment - Comment Object
+   */
+  addComment(newComment: Comment): Observable<Comment> {
+    return this.http.post<Comment>(`${this.allPostsApiUrl}${newComment.postId}/comments`, newComment, this.httpOptions);
   }
 }

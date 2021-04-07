@@ -3,7 +3,7 @@
     <div class="card bg-white rounded-2 px-2 py-3">
       <div class="row">
         <div class="col-sm-12">
-          <h4 class="p-2 mb-4 font-italic border-bottom bg-light">
+          <h4 class="p-1 mb-4 font-italic border-bottom bg-light">
             Blog Details
           </h4>
           <div class="blog-post">
@@ -13,8 +13,7 @@
                {{ postUser.email }} [<a href="#">{{ postUser.name }}</a>]
             </p>
 
-            <p>This blog post shows a few different types of content that's supported and styled with Bootstrap. Basic
-              typography, images, and code are all supported.</p>
+            <p>This blog post headline is temporary, and code are all supported.</p>
             <hr>
             <p> {{ post.body }} </p>
           </div>
@@ -23,4 +22,4 @@
     </div>
   </div>
 </div>
-<app-post-comments [comments]="postComments"></app-post-comments>
+<app-post-comments [comments]="postComments" [post]="post" [userList]="userList"></app-post-comments>
